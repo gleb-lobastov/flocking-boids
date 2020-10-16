@@ -1,5 +1,7 @@
 #Flocking boids
 
+[Demo](https://gleb-lobastov.github.io/flocking-boids/)
+
 Simulation of the group of items (boids) with flocking behavior, that can be rendered on the provided canvas
 
 ### How it looks
