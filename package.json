@@ -7,6 +7,8 @@
     "build": "rimraf dist && webpack --config ./webpack.config.js",
     "build:demo": "rimraf demo_dist && webpack --config ./webpack.config.demo.js",
     "start": "webpack serve --config ./webpack.config.demo.js",
+    "publish": "gh-pages -d demo_dist",
+    "release": "npm run build && npm run build:demo && npm version minor && npm publish && npm run publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

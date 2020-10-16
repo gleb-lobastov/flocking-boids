@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const flockingBoidsAnimation = animateFlockingBoids({ canvas });
   window.flockingBoidsAnimation = flockingBoidsAnimation;
   flockingBoidsAnimation.settings.characteristics.predators.count = 0;
-  flockingBoidsAnimation.play();//1
+  flockingBoidsAnimation.play();
   setTimeout(() => {
     flockingBoidsAnimation.settings.characteristics.predators.count = 1;
   }, 5000);
