@@ -47,7 +47,7 @@ export default {
         maxShrinkPerTick: 5,
         maxGrowthPerTick: 100
       },
-      count: 1000,
+      count: 600,
       speedRatio: 0.004
     },
     manualPredator: null
