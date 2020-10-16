@@ -1,6 +1,6 @@
 {
   "name": "flocking-boids",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simulation of the group of items (boids) with flocking behavior, that can be rendered on the provided canvas",
   "main": "dist/main.js",
   "scripts": {
