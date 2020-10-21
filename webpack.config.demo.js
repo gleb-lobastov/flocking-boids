@@ -2,6 +2,7 @@ const path = require("path");
 const config = require("./webpack.config");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+config.module.rules[0].use.options.presets.push("@babel/preset-react");
 module.exports = {
   ...config,
   mode: "development",
