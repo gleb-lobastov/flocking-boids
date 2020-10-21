@@ -46,10 +46,11 @@ export default class FlockingBoid extends Boid {
     }
   }
 
-  constructor(options) {
-    super(options);
+  constructor(options, scene) {
+    super(options, scene);
     this.resetFlockingForces();
     this.carelessnessRatio = 1 + Math.random();
+    this.swayFlapAngle = 15;
   }
 
   resetFlockingForces() {

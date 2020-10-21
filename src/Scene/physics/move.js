@@ -4,5 +4,6 @@ export default function move(boids, speedRatio) {
       (boids[i].position.x + speedRatio * boids[i].speed.x + 1) % 1;
     boids[i].position.y =
       (boids[i].position.y + speedRatio * boids[i].speed.y + 1) % 1;
+    boids[i].sway();
   }
 }

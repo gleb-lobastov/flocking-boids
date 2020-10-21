@@ -2,8 +2,11 @@ import * as vectorMutable from "./vectorMutable";
 
 export const SPAWN_SPOT_PATTERNS = {
   RANDOM: "RANDOM",
+  CENTER: "CENTER",
   CIRCLE: "CIRCLE",
-  EDGE: "EDGE"
+  EDGE: "EDGE",
+  SIDE: "SIDE",
+  NEAR: "NEAR"
 };
 
 export const SPAWN_SPEED_PATTERNS = {
@@ -15,7 +18,7 @@ export const SPAWN_SPEED_PATTERNS = {
 };
 
 const DEFAULT_CIRCLE_RADIUS = 0.4;
-export function spawnPosition(spawnConfig = {}) {
+export function spawnPosition(spawnConfig = {}, scene) {
   const {
     spotPattern = SPAWN_SPOT_PATTERNS.RANDOM,
     spotVariance
@@ -23,6 +26,13 @@ export function spawnPosition(spawnConfig = {}) {
 
   let spotPosition;
   switch (spotPattern) {
+    case SPAWN_SPOT_PATTERNS.CENTER:
+      spotPosition = {
+        x: 0.5,
+        y: 0.5,
+        z: 0
+      };
+      break;
     case SPAWN_SPOT_PATTERNS.CIRCLE:
       const { circleRadius = DEFAULT_CIRCLE_RADIUS } = spawnConfig;
       const x = 2 * circleRadius * (Math.random() - 0.5);
@@ -41,13 +51,19 @@ export function spawnPosition(spawnConfig = {}) {
         z: 0
       };
       break;
+    case SPAWN_SPOT_PATTERNS.SIDE:
+      spotPosition = sideSpotPosition();
+      break;
+    case SPAWN_SPOT_PATTERNS.NEAR:
+      const buddy =
+        scene.instances.flockingBoids[
+          Math.floor(Math.random() * scene.instances.flockingBoids.length)
+        ];
+      spotPosition = buddy ? { ...buddy.position } : randomSpotPosition();
+      break;
     case SPAWN_SPOT_PATTERNS.RANDOM:
     default:
-      spotPosition = {
-        x: Math.random(),
-        y: Math.random(),
-        z: 0
-      };
+      spotPosition = randomSpotPosition();
   }
   if (spotVariance) {
     spotPosition.x += (Math.random() - 0.5) * spotVariance;
@@ -97,4 +113,27 @@ export function spawnSpeed(position, spawnConfig = {}) {
     vectorMutable.rotate(speed, (speedRotation / 180) * Math.PI);
   }
   return speed;
+}
+
+function sideSpotPosition() {
+  const rnd = Math.random();
+  switch (Math.floor(Math.random() * 4)) {
+    case 1:
+      return { x: rnd, y: 0, z: 0 };
+    case 2:
+      return { x: rnd, y: 1, z: 0 };
+    case 3:
+      return { x: 0, y: rnd, z: 0 };
+    case 4:
+    default:
+      return { x: 1, y: rnd, z: 0 };
+  }
+}
+
+function randomSpotPosition() {
+  return {
+    x: Math.random(),
+    y: Math.random(),
+    z: 0
+  };
 }

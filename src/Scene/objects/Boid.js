@@ -2,18 +2,38 @@ import * as vectorImmutable from "../utils/vectorImmutable";
 import * as vectorMutable from "../utils/vectorMutable";
 import { spawnPosition, spawnSpeed } from "../utils/spawn";
 
+const RAD = Math.PI / 180;
+const SWAY_DIRECTION = { CLOCKWISE: -1, COUNTERCLOCKWISE: 1 };
+
 export default class Boid {
   size = 1;
 
   color = "#000";
 
-  constructor({ spawnPattern }) {
+  swayFlapAngle = 0;
+
+  constructor({ spawnPattern }, scene) {
+    this.scene = scene;
     this.spawn(spawnPattern);
   }
 
   spawn(spawnPattern) {
-    this.position = spawnPosition(spawnPattern);
+    this.position = spawnPosition(spawnPattern, this.scene);
     this.speed = spawnSpeed(this.position, spawnPattern);
+    this.swayAngle = Math.floor(Math.random() * 30) - 15;
+    this.swayDirection =
+      Math.random() > 0.5
+        ? SWAY_DIRECTION.CLOCKWISE
+        : SWAY_DIRECTION.COUNTERCLOCKWISE;
+  }
+
+  sway() {
+    this.swayAngle += (this.swayDirection * this.swayFlapAngle) / 2;
+    if (this.swayAngle > this.swayFlapAngle) {
+      this.swayDirection = SWAY_DIRECTION.CLOCKWISE;
+    } else if (this.swayAngle < -this.swayFlapAngle) {
+      this.swayDirection = SWAY_DIRECTION.COUNTERCLOCKWISE;
+    }
   }
 
   accelerate(factors) {
@@ -37,7 +57,8 @@ export default class Boid {
       this.position.x * context.canvas.width,
       this.position.y * context.canvas.height
     );
-    context.rotate(Math.PI / 2 - (Math.PI / 2 - Math.acos(this.speed.x)) / 1.5);
+    const directionAngleRad = (Math.PI / 2 - Math.acos(this.speed.x)) / 1.5;
+    context.rotate(Math.PI / 2 - directionAngleRad + this.swayAngle * RAD);
     // eslint-disable-next-line no-param-reassign
     context.fillStyle = this.color;
     context.beginPath();

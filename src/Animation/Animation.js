@@ -1,3 +1,5 @@
+export const TICK_TIME = 20;
+
 export default class Animation {
   constructor({
     canvas,
@@ -33,7 +35,7 @@ export default class Animation {
     this.requestRender();
 
     if (this.isRunning) {
-      setTimeout(this.tick.bind(this), 20);
+      setTimeout(this.tick.bind(this), TICK_TIME);
     }
   }
 

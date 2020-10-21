@@ -16,10 +16,10 @@ export default {
     },
     predatorAvoidance: {
       distance: 0.03,
-      strength: 2
+      strength: 1
     },
     roosting: {
-      distance: 0.2 ,
+      distance: 0.2,
       strength: 0.1
     },
     predatorToPrey: {
@@ -40,12 +40,12 @@ export default {
     },
     flockingBoids: {
       spawnPattern: {
-        spotPattern: SPAWN_SPOT_PATTERNS.CIRCLE,
+        spotPattern: SPAWN_SPOT_PATTERNS.NEAR,
         spotVariance: 0.1,
-        speedPattern: SPAWN_SPEED_PATTERNS.FROM_CENTER,
+        speedPattern: SPAWN_SPEED_PATTERNS.RANDOM,
         speedRotation: 45,
         maxShrinkPerTick: 5,
-        maxGrowthPerTick: 100
+        maxGrowthPerTick: Infinity
       },
       count: 600,
       speedRatio: 0.004

@@ -5,6 +5,9 @@ import * as vectorImmutable from "../utils/vectorImmutable";
 export default function acceleratePredators(predators, flockingBoids) {
   for (let i = 0; i < predators.length; i += 1) {
     const targetBoid = findTargetBoid(predators[i], flockingBoids);
+    if (targetBoid === null) {
+      return;
+    }
     predators[i].accelerate([
       {
         force: vectorImmutable.subtract(
@@ -19,7 +22,7 @@ export default function acceleratePredators(predators, flockingBoids) {
 
 function findTargetBoid(predator, flockingBoids) {
   let min = Infinity;
-  let targetBoid = 0;
+  let targetBoid = null;
   for (let i = 0; i < flockingBoids.length; i += 1) {
     const current = vectorImmutable.squareDistance(
       predator.position,

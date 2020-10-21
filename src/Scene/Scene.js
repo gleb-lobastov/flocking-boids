@@ -62,11 +62,11 @@ export default class Scene {
 
     if (effect > 0) {
       for (let i = 0; i < effect; i += 1) {
-        instances.push(new BoidClass(characteristic));
+        instances.push(new BoidClass(characteristic, this));
       }
     } else {
-      const reduceEachOf = instances.length / effect;
-      mutableFilter(instances, (_, i) => i % reduceEachOf);
+      const reduceEachOf = -Math.floor(instances.length / effect);
+      mutableFilter(instances, (_, i) => (i + 1) % reduceEachOf);
     }
   }
 
