@@ -8,7 +8,17 @@ export default function useSetting(
   const attrs = path.split(".");
   const lastAttr = attrs.pop();
   const settingObj = attrs.reduce((settings, attr) => settings[attr], settings);
-  const [settingState, setSettingState] = useState(settingObj[lastAttr]);
+  const [settingState, setSettingState] = useState(() => {
+    if (initialValue !== undefined) {
+      return initialValue;
+    } else if (
+      defaultValue !== undefined &&
+      settingObj[lastAttr] === undefined
+    ) {
+      return defaultValue;
+    }
+    return settingObj[lastAttr];
+  });
   const realValue = settingObj[lastAttr];
 
   const setSetting = useCallback(
@@ -18,14 +28,6 @@ export default function useSetting(
     },
     [settingObj, lastAttr]
   );
-
-  useEffect(() => {
-    if (initialValue !== undefined) {
-      setSetting(initialValue);
-    } else if (defaultValue !== undefined && settingState === undefined) {
-      setSetting(defaultValue);
-    }
-  }, []);
 
   useEffect(() => {
     if (realValue !== settingState) {

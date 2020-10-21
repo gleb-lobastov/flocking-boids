@@ -45,7 +45,7 @@ export default function SpawnSettings({
   const [growthPattern, setGrowthPattern] = useSetting(
     spawnPattern,
     "maxGrowthPerTick",
-    { initialValue: SPAWN_GROWTH_PATTERNS.NORMAL }
+    { defaultValue: SPAWN_GROWTH_PATTERNS.NORMAL }
   );
   const [speedPattern, setSpeedPattern] = useSetting(
     spawnPattern,
@@ -58,7 +58,7 @@ export default function SpawnSettings({
   );
 
   const respawn = useRespawn();
-  useDidUpdate(respawn, [
+  useDidUpdate(onlyPopulation ? () => {} : respawn, [
     spotPattern,
     growthPattern,
     speedPattern,

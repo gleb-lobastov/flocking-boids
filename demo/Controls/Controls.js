@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import red from "@material-ui/core/colors/red";
 import { SettingsContextProvider } from "./context/SettingsContext";
 import { FpsContextProvider } from "./context/FpsContext";
 import ControlsPanel from "./blocks/ControlsPanel";
@@ -12,13 +11,13 @@ const theme = createMuiTheme({
       main: "#658fb2"
     },
     secondary: {
-      main: red[400]
+      main: "#ffc032"
     }
   }
 });
 
 export default function Controls({ settings }) {
-  const [isPanelVisible, setIsPanelVisible] = useState(true);
+  const [isPanelVisible, setIsPanelVisible] = useState(false);
 
   return (
     <ThemeProvider theme={theme}>
