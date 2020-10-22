@@ -66,7 +66,7 @@ export default function SpawnSettings({
   ]);
 
   return (
-    <Grid className={className} container spacing={1}>
+    <Grid className={className} container spacing={2}>
       <Grid item xs={12}>
         <Typography variant="h6">Spawn settings</Typography>
       </Grid>

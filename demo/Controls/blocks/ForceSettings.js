@@ -18,7 +18,7 @@ export default function ForceSettings({
   const [strength, setStrength] = useSetting(forceSettings, "strength");
 
   return (
-    <Grid className={className} container spacing={1}>
+    <Grid className={className} container spacing={2}>
       <Grid item xs={12}>
         <Typography variant="h6">{renderPropName(forceName)} force</Typography>
       </Grid>

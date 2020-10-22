@@ -20,21 +20,27 @@ const useStyles = makeStyles({
     right: "0",
     bottom: "0",
     top: "0",
-    width: "300px"
+    width: "320px"
   },
   title: {
     flexGrow: 1
   },
   content: {
     opacity: "0.7",
-    padding: "16px",
+    padding: "24px 21px 24px 24px",
     flexGrow: 1,
     overflow: "auto"
   },
+  closeButton: {
+    paddingRight: "0"
+  },
   "@media (max-width: 720px)": {
+    header: {
+      position: "sticky",
+      top: 0
+    },
     container: {
       position: "static",
-      marginTop: "-72px",
       width: "100%"
     }
   }
@@ -45,13 +51,17 @@ export default function ControlsPanel({ onClose }) {
   const respawn = useRespawn();
   return (
     <div className={classes.container}>
-      <AppBar position="static">
+      <AppBar className={classes.header} position="static">
         <Toolbar>
           <Typography className={classes.title} variant="h5" noWrap>
             Controls
           </Typography>
           <RespawnButton color="inherit" />
-          <IconButton color="inherit" onClick={onClose}>
+          <IconButton
+            className={classes.closeButton}
+            color="inherit"
+            onClick={onClose}
+          >
             <CloseIcon />
           </IconButton>
         </Toolbar>
