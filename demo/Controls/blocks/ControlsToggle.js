@@ -10,13 +10,18 @@ import useRespawn from "../hooks/useRespawn";
 const useStyles = makeStyles(theme => ({
   container: {
     position: "fixed",
-    right: "0",
-    bottom: "0",
-    maxHeight: "200px",
     padding: "4px",
     margin: "8px",
     backgroundColor: fade(theme.palette.primary.dark, 0.4),
     borderRadius: "4px"
+  },
+  git: {
+    left: "0",
+    bottom: "0"
+  },
+  controls: {
+    right: "0",
+    bottom: "0"
   }
 }));
 
@@ -25,34 +30,38 @@ export default function ControlsToggle({ value, onClick }) {
   const respawn = useRespawn();
 
   return (
-    <div className={classes.container}>
-      <IconButton
-        className={classes.button}
-        color="secondary"
-        onClick={onClick}
-      >
-        <ToggleOffIcon />
-      </IconButton>
-      <IconButton
-        className={classes.button}
-        color="secondary"
-        onClick={respawn}
-      >
-        <CachedIcon />
-      </IconButton>
-      <IconButton
-        className={classes.button}
-        color="secondary"
-        onClick={() =>
-          window.open(
-            "https://github.com/gleb-lobastov/flocking-boids",
-            "_blank",
-            "noopener"
-          )
-        }
-      >
-        <GithubIcon />
-      </IconButton>
-    </div>
+    <>
+      <div className={`${classes.container} ${classes.git}`}>
+        <IconButton
+          className={classes.button}
+          color="secondary"
+          onClick={() =>
+            window.open(
+              "https://github.com/gleb-lobastov/flocking-boids",
+              "_blank",
+              "noopener"
+            )
+          }
+        >
+          <GithubIcon />
+        </IconButton>
+      </div>
+      <div className={`${classes.container} ${classes.controls}`}>
+        <IconButton
+          className={classes.button}
+          color="secondary"
+          onClick={onClick}
+        >
+          <ToggleOffIcon />
+        </IconButton>
+        <IconButton
+          className={classes.button}
+          color="secondary"
+          onClick={respawn}
+        >
+          <CachedIcon />
+        </IconButton>
+      </div>
+    </>
   );
 }
