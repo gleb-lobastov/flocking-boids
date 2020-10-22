@@ -7,11 +7,71 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Demo</title>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function(m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function() {
+            (m[i].a = m[i].a || []).push(arguments);
+          };
+        m[i].l = 1 * new Date();
+        (k = e.createElement(t)),
+          (a = e.getElementsByTagName(t)[0]),
+          (k.async = 1),
+          (k.src = r),
+          a.parentNode.insertBefore(k, a);
+      })(
+        window,
+        document,
+        "script",
+        "https://mc.yandex.ru/metrika/tag.js",
+        "ym"
+      );
+
+      ym(68596042, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true
+      });
+    </script>
+    <noscript
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/68596042"
+          style="position:absolute; left:-9999px;"
+          alt=""
+        /></div
+    ></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <style type="text/css">
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: url(https://sun9-55.userapi.com/c831208/v831208479/f5381/KBDMD_juXW8.jpg)
+          no-repeat center bottom fixed;
+        background-size: cover;
+      }
+      #canvas {
+        width: 100%;
+        height: 100%;
+      }
+      @media (max-width: 720px) {
+        #canvas {
+          position: fixed;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          left: 0;
+        }
+      }
+    </style>
   <meta name="description" content="Simulation of the group of items (boids) with flocking behavior, that can be rendered on the provided canvas"><link rel="icon" href="./favicon.ico"></head>
-  <body
-    style="background: url(https://sun9-55.userapi.com/c831208/v831208479/f5381/KBDMD_juXW8.jpg) no-repeat center center fixed;background-size: cover;"
-  >
-    <canvas id="canvas" style="width: 100%;height: 100%;"></canvas>
+  <body>
+    <canvas id="canvas"></canvas>
     <div id="controls"></div>
-  <script src="./main-91a86fb380510716fe8b.js"></script></body>
+  <script src="./main-89a5b73ee7615b0996d4.js"></script></body>
 </html>
