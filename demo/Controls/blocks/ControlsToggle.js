@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import ToggleOffIcon from "@material-ui/icons/ToggleOff";
 import CachedIcon from "@material-ui/icons/Cached";
+import GithubIcon from "@material-ui/icons/Github";
 import IconButton from "@material-ui/core/IconButton";
 import useRespawn from "../hooks/useRespawn";
 
@@ -28,6 +29,13 @@ export default function ControlsToggle({ value, onClick }) {
       <IconButton
         className={classes.button}
         color="secondary"
+        onClick={onClick}
+      >
+        <ToggleOffIcon />
+      </IconButton>
+      <IconButton
+        className={classes.button}
+        color="secondary"
         onClick={respawn}
       >
         <CachedIcon />
@@ -35,9 +43,15 @@ export default function ControlsToggle({ value, onClick }) {
       <IconButton
         className={classes.button}
         color="secondary"
-        onClick={onClick}
+        onClick={() =>
+          window.open(
+            "https://github.com/gleb-lobastov/flocking-boids",
+            "_blank",
+            "noopener"
+          )
+        }
       >
-        <ToggleOffIcon />
+        <GithubIcon />
       </IconButton>
     </div>
   );
